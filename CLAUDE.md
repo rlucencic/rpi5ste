@@ -10,7 +10,7 @@ glue.
 
 | Path | What |
 |---|---|
-| `src/main.c` | The STE as an `emu_machine_t`: esp32ste's `main/main.c` through `../rpi5emu/tools/port_glue.py` and `port_finish.py`, then by hand: esp32ste's menuconfig defaults as constants (colour monitor, every resolution, the data folder as C: and booting from it, floppies/), up to 4 MB and the CPU choice as on the Tab5, free space by `statvfs()`, the time by `clock_gettime()`, no opcode table copies |
+| `src/main.c` | The STE as an `emu_machine_t`: esp32ste's `main/main.c` through `../rpi5emu/tools/port_glue.py` and `port_finish.py`, then by hand: esp32ste's menuconfig defaults as constants (colour monitor, every resolution, the data folder as C: and booting from it, floppies/ and ACSI images there), up to 4 MB and the CPU choice as on the Tab5, free space by `statvfs()`, the time by `clock_gettime()`, no opcode table copies |
 | `src/settings.c` | esp32ste's, over `emu/nvs.h` (section `atari`; defaults TOS 1.62, 1 MB) |
 | `src/tos_rom.c` | `roms/tos162.img`, `tos206.img` through `emu_rom_read()` (the boards map flash partitions of those names) |
 
@@ -24,6 +24,9 @@ Keep `src/main.c` in step with esp32ste's `main/main.c`.
   `m68k_use_table_copies()` wrote past the buffer (a crash in `st_init()`).
   The copies are the boards' (tables in faster memory than flash): rpi5ste
   passes none.
+- **The core's sources are a glob** (`CONFIGURE_DEPENDS`): without it a new
+  file in esp32ste's core (`acsi.c`) wasn't built until CMake ran again
+  (undefined references at the link).
 
 ## Build, run, check
 
@@ -42,5 +45,8 @@ Checked on the Pi (2026-11-15, headless): TOS 1.62, 1 MB, at 100% to the
 GEM desktop; C: opened by a double click (the data folder's folders);
 TOS 2.06 with 4 MB to its desktop. By hand (2026-11-16, the window on a
 Mac through XQuartz, `pi.sh run`): TOS 2.06, 4 MB, the grabbed mouse
-(since rpi5emu c4383cf; 7 pictures a second while it moves). Not yet:
+(since rpi5emu c4383cf; 7 pictures a second while it moves). ACSI
+(2026-11-16, headless): HDDRIVER 13.02's demo image in ACSI 0 (`F 2
+/tmp/hddrdemo.img`, then `r`), TOS 2.06 booted through it, C: opened by a
+double click showed its files, the data folder's drive was D:. Not yet:
 sound heard, floppies, 16 MHz and Fastest, games.

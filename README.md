@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>An Atari STE on the Raspberry Pi 5, in a window of its own.</b><br>
-  68000 at 8 MHz (also 16 MHz or as fast as it goes), TOS 1.62 / 2.06, up to 4 MB, floppies, hard disk.
+  68000 at 8 MHz (also 16 MHz or as fast as it goes), TOS 1.62 / 2.06, up to 4 MB, floppies, hard disk, ACSI hard disk images.
 </p>
 
 <p align="center">
@@ -120,8 +120,8 @@ cmake -S . -B build -G Ninja && cmake --build build
 
 1. `build/rpi5ste`: the setup screen opens in a window.
 2. Choose the TOS and click **Start**.
-3. Put images into `~/rpi5emu/floppies/`, drop them on the window or the web page, and
-   insert them on the setup screen's **Disks** page.
+3. Put images into `~/rpi5emu/floppies/` (floppies `.ST`, `.MSA`; hard disks `.IMG`, `.HD`),
+   drop them on the window or the web page, and insert them on the setup screen's **Disks** page.
 
 ## Using it
 
@@ -135,7 +135,8 @@ cmake -S . -B build -G Ninja && cmake --build build
 | Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/rpi5ste game.st` |
 | Start straight into the machine | `build/rpi5ste -S`, with the setup screen's rows as `--choice`: `build/rpi5ste -S --choice "System=TOS 2.06" --choice "Memory=4 MB"` |
 | Show the window on another computer | Log in with `ssh -C -Y <the Pi>` and start it there: fine for still pictures; games want the Pi's own monitor |
-| Make a blank floppy | Setup screen → **Floppy** → **New empty disk** |
+| Make a blank floppy | Setup screen → **Disks** → **New empty disk** |
+| Use a hard disk image | Insert it into **ACSI 0** on the **Disks** page and reset: with a driver on it (AHDI, HDDRIVER, ICD, PPDriver) TOS boots from it, its partitions are C: onward and `~/rpi5emu` the next letter |
 | Use programs from the Pi | Copy them anywhere into `~/rpi5emu`: it's drive C: |
 
 Images live in `~/rpi5emu/floppies/`, settings in `~/.config/rpi5emu/settings.ini`; the
@@ -186,12 +187,13 @@ flowchart LR
 ## Limitations
 
 - Checked on the Pi through its console and screenshots: TOS 1.62 and 2.06 at full speed to the desktop; C: opened with a double click. By hand in the
-  window (forwarded to a Mac): TOS 2.06 and the mouse. Not yet with the sound heard, or with much software.
+  window (forwarded to a Mac): TOS 2.06 and the mouse. ACSI: HDDRIVER's demo image booted (headless), its C: opened, `~/rpi5emu` D:. Not yet with the sound
+  heard, or with much software.
 - Over X forwarding (`ssh -Y`) every changed picture crosses the network: 8 to 15 a second, about 7 to a Mac
   (XQuartz, drawn in software).
 - `.STX` (Pasti) images of copy-protected originals don't work; `.MSA`
   images are read-only.
-- No FPU, ACSI, MIDI or Mega STE hardware.
+- No FPU, MIDI or Mega STE hardware.
 - Floppy access is faster than a real drive, which a few loaders may notice.
 
 ## Credits

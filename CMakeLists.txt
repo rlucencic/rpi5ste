@@ -20,7 +20,7 @@ endif()
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../rpi5emu" rpi5emu)
 
-file(GLOB ST_SOURCES "${ESP32STE_DIR}/components/atari_st/*.c")
+file(GLOB ST_SOURCES CONFIGURE_DEPENDS "${ESP32STE_DIR}/components/atari_st/*.c")
 add_executable(rpi5ste
     src/main.c
     src/settings.c
