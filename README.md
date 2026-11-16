@@ -185,9 +185,10 @@ flowchart LR
 
 ## Limitations
 
-- Checked on the Pi through its console and screenshots: TOS 1.62 and 2.06 at full speed to the desktop; C: opened with a double click. Not yet by hand
-  in the window, with the sound heard, or with much software.
-- Over X forwarding (`ssh -Y`) every changed picture crosses the network: 8 to 15 a second.
+- Checked on the Pi through its console and screenshots: TOS 1.62 and 2.06 at full speed to the desktop; C: opened with a double click. By hand in the
+  window (forwarded to a Mac): TOS 2.06 and the mouse. Not yet with the sound heard, or with much software.
+- Over X forwarding (`ssh -Y`) every changed picture crosses the network: 8 to 15 a second, about 7 to a Mac
+  (XQuartz, drawn in software).
 - `.STX` (Pasti) images of copy-protected originals don't work; `.MSA`
   images are read-only.
 - No FPU, ACSI, MIDI or Mega STE hardware.

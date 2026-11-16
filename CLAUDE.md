@@ -40,5 +40,7 @@ scancode, `m <dx> <dy> <btn>` the mouse (a double click: `m 0 0 1`, `m 0 0
 
 Checked on the Pi (2026-11-15, headless): TOS 1.62, 1 MB, at 100% to the
 GEM desktop; C: opened by a double click (the data folder's folders);
-TOS 2.06 with 4 MB to its desktop. Not yet: the window by hand, sound
-heard, floppies, 16 MHz and Fastest, games.
+TOS 2.06 with 4 MB to its desktop. By hand (2026-11-16, the window on a
+Mac through XQuartz, `pi.sh run`): TOS 2.06, 4 MB, the grabbed mouse
+(since rpi5emu c4383cf; 7 pictures a second while it moves). Not yet:
+sound heard, floppies, 16 MHz and Fastest, games.
