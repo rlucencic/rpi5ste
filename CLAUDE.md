@@ -49,4 +49,5 @@ Mac through XQuartz, `pi.sh run`): TOS 2.06, 4 MB, the grabbed mouse
 (2026-11-16, headless): HDDRIVER 13.02's demo image in ACSI 0 (`F 2
 /tmp/hddrdemo.img`, then `r`), TOS 2.06 booted through it, C: opened by a
 double click showed its files, the data folder's drive was D:. Not yet:
-sound heard, floppies, 16 MHz and Fastest, games.
+sound heard, floppies, 16 MHz, games. The CPU row is 8 or 16 MHz:
+esp32ste's Fastest was taken out (2026-11-17), as no other machine has one.

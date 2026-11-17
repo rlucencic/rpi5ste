@@ -52,10 +52,8 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 **The machine**
 - 68000 ([Musashi](https://github.com/kstenerud/Musashi) core) at **8 MHz** like an STE. Also
-  faster, like an accelerator board: **16 MHz**, or **Fastest**, as
-  fast as it keeps real time (16–20 MHz in GEM, far more in tight loops). The
-  rest of the machine keeps the STE's timing; the choice applies at once,
-  no restart
+  faster, like an accelerator board: **16 MHz**. The rest of the machine
+  keeps the STE's timing; the choice applies at once, no restart
 - Real time at 8 MHz on the Pi with most of a core to spare
 - TOS 1.62 or 2.06, chosen on the setup screen
 - 512 KB, 1 MB or 4 MB of RAM
