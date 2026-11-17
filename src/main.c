@@ -29,10 +29,11 @@ static uint16_t s_tos_version;      /* of the running TOS, e.g. 0x0206 */
 /* What the machine's settings say the board-only menuconfig options are
  * on the boards (esp32ste's Kconfig defaults): a colour monitor, every
  * resolution offered, the data folder as hard disk C: (the whole of it, as
- * the boards' whole SD card), booting from it, floppy images in floppies/
+ * the boards' whole SD card), booting from it, disk images in st/ (the ST's
+ * own folder; its TOS in st/roms)
  */
 #define ST_HD_FOLDER        ""
-#define ST_FLOPPY_FOLDER    "floppies"
+#define ST_FLOPPY_FOLDER    "st"
 
 static int64_t now_us(void)
 {
@@ -100,7 +101,7 @@ static void storage(bool sd)
     }
     s_cfg.hd_path = hd;
     emu_set_drive_info(hd ? "Hard disk C: is the data folder (D: or later if an ACSI image boots), "
-                            "disk images in its floppies/"
+                            "disk images in its st/"
                           : "No data folder: no hard disk or disk images");
 }
 
@@ -234,8 +235,8 @@ static bool start(void)
     tos_rom_t tos;
     if (!tos_rom_map(settings_tos_partition(), &tos)) {
         static char message[1400];
-        snprintf(message, sizeof(message), "No TOS %s: copy %s.img into %s/roms.", settings.tos ? "2.06" : "1.62",
-                 settings_tos_partition(), emu_data_dir());
+        snprintf(message, sizeof(message), "No TOS %s: copy %s.img into %s.", settings.tos ? "2.06" : "1.62",
+                 settings_tos_partition(), emu_rom_dir());
         emu_set_message(message);
         return false;
     }

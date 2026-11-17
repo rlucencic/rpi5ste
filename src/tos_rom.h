@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-/* A TOS image from the data folder's roms/ (<name>.img: tos162.img,
+/* A TOS image from the machine's roms/ folder (<name>.img: tos162.img,
  * tos206.img; the boards map it from a flash partition of that name), read
  * into memory (big-endian)
  */
@@ -15,7 +15,7 @@ typedef struct {
     uint32_t base;          /* ROM base address in the ST memory map */
 } tos_rom_t;
 
-/* Read roms/<name>.img and check its TOS header; false if it isn't one */
+/* Read <name>.img from the ST's roms/ and check its TOS header; false if it isn't one */
 bool tos_rom_map(const char *name, tos_rom_t *rom);
 
 /* Let it go (st_init() keeps its own copy of the ROM) */

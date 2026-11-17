@@ -111,14 +111,14 @@ cmake -S . -B build -G Ninja && cmake --build build
 
 ### 3. ROMs
 
-`tos162.img` and/or `tos206.img` in the data folder's `roms/`
-(`~/rpi5emu/roms`), named as esp32ste's. Not part of this repository.
+`tos162.img` and/or `tos206.img` in the data folder's `st/roms/`
+(`~/rpi5emu/st/roms`), named as esp32ste's. Not part of this repository.
 
 ### 4. First start
 
 1. `build/rpi5ste`: the setup screen opens in a window.
 2. Choose the TOS and click **Start**.
-3. Put images into `~/rpi5emu/floppies/` (floppies `.ST`, `.MSA`; hard disks `.IMG`, `.HD`),
+3. Put images into `~/rpi5emu/st/` (floppies `.ST`, `.MSA`; hard disks `.IMG`, `.HD`),
    drop them on the window or the web page, and insert them on the setup screen's **Disks** page.
 
 ## Using it
@@ -137,7 +137,7 @@ cmake -S . -B build -G Ninja && cmake --build build
 | Use a hard disk image | Insert it into **ACSI 0** on the **Disks** page and reset: with a driver on it (AHDI, HDDRIVER, ICD, PPDriver) TOS boots from it, its partitions are C: onward and `~/rpi5emu` the next letter |
 | Use programs from the Pi | Copy them anywhere into `~/rpi5emu`: it's drive C: |
 
-Images live in `~/rpi5emu/floppies/`, settings in `~/.config/rpi5emu/settings.ini`; the
+Images live in `~/rpi5emu/st/`, settings in `~/.config/rpi5emu/settings.ini`; the
 inserted images are remembered across starts. `build/rpi5ste --help` lists the options.
 
 ## How it works
@@ -157,7 +157,7 @@ flowchart LR
   EMU -- picture --> WIN
   EMU -- sound --> SND[SDL audio]
   WIN -- keys · mouse --> EMU
-  DATA[("~/rpi5emu<br>roms · floppies")]
+  DATA[("~/rpi5emu<br>st · st/roms")]
   EMU <--> DATA
   WEB <--> DATA
 ```

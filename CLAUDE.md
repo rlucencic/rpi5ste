@@ -10,9 +10,9 @@ glue.
 
 | Path | What |
 |---|---|
-| `src/main.c` | The STE as an `emu_machine_t`: esp32ste's `main/main.c` through `../rpi5emu/tools/port_glue.py` and `port_finish.py`, then by hand: esp32ste's menuconfig defaults as constants (colour monitor, every resolution, the data folder as C: and booting from it, floppies/ and ACSI images there), up to 4 MB and the CPU choice as on the Tab5, free space by `statvfs()`, the time by `clock_gettime()`, no opcode table copies |
+| `src/main.c` | The STE as an `emu_machine_t`: esp32ste's `main/main.c` through `../rpi5emu/tools/port_glue.py` and `port_finish.py`, then by hand: esp32ste's menuconfig defaults as constants (colour monitor, every resolution, the data folder as C: and booting from it, the floppy and ACSI images in its st/), up to 4 MB and the CPU choice as on the Tab5, free space by `statvfs()`, the time by `clock_gettime()`, no opcode table copies |
 | `src/settings.c` | esp32ste's, over `emu/nvs.h` (section `atari`; defaults TOS 1.62, 1 MB) |
-| `src/tos_rom.c` | `roms/tos162.img`, `tos206.img` through `emu_rom_read()` (the boards map flash partitions of those names) |
+| `src/tos_rom.c` | `st/roms/tos162.img`, `tos206.img` through `emu_rom_read()` (the boards map flash partitions of those names) |
 
 Keep `src/main.c` in step with esp32ste's `main/main.c`.
 

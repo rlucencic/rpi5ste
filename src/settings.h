@@ -24,5 +24,5 @@ extern settings_t settings;
 void settings_load(void);
 void settings_save(void);
 
-/* The chosen TOS's name: tos162, tos206 (its file: roms/<name>.img) */
+/* The chosen TOS's name: tos162, tos206 (its file: st/roms/<name>.img) */
 const char *settings_tos_partition(void);
