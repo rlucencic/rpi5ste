@@ -1,13 +1,14 @@
-<h1 align="center">rpi5ste</h1>
+<h1 align="center">sdlste</h1>
 
 <p align="center">
-  <b>An Atari STE on the Raspberry Pi 5, in a window of its own.</b><br>
+  <b>An Atari STE in an SDL 3 window on Linux or macOS.</b><br>
   68000 at 8 MHz (also 16 MHz or as fast as it goes), TOS 1.62 / 2.06, up to 4 MB, floppies, hard disk, ACSI hard disk images.
 </p>
 
 <p align="center">
   <img alt="Raspberry Pi 5" src="https://img.shields.io/badge/Raspberry%20Pi-5-c51a4a">
-  <img alt="Linux arm64" src="https://img.shields.io/badge/Linux-arm64-333">
+  <img alt="Linux arm64 and amd64" src="https://img.shields.io/badge/Linux-arm64%20%7C%20amd64-333">
+  <img alt="macOS arm64" src="https://img.shields.io/badge/macOS-arm64-333">
   <img alt="SDL 3" src="https://img.shields.io/badge/SDL-3-1d4ed8">
   <img alt="68000" src="https://img.shields.io/badge/CPU-Musashi%2068000-555">
   <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-green">
@@ -25,28 +26,27 @@
   <sub>TOS 1.62's desktop with drive C: (the data folder) open, and TOS 2.06's with 4 MB, on the Pi.</sub>
 </p>
 
-rpi5ste runs [esp32ste](https://github.com/rlucencic/esp32ste)'s STE on a Raspberry Pi 5 with
-64-bit Linux, in a window of its own (X11 or Wayland, through SDL 3). The machine is the
+sdlste runs [esp32ste](https://github.com/rlucencic/esp32ste)'s STE on 64-bit Linux (arm64 and amd64) and Apple Silicon macOS. SDL 3 provides the window, sound and input. The machine is the
 same code as on the ESP32 boards: esp32ste's platform-independent core and
 [esp32emu](https://github.com/rlucencic/esp32emu)'s CPU core, on
-[rpi5emu](https://github.com/rlucencic/rpi5emu), the family's Linux runtime: a setup
-screen in the window, sound, the Pi's keyboard and mouse, a web page on your network and a
+[sdlemu](https://github.com/rlucencic/sdlemu), the family's desktop runtime: a setup
+screen in the window, sound, the host's keyboard and mouse, a web page on your network and a
 console.
 
-It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
-[rpi5zx](https://github.com/rlucencic/rpi5zx) (ZX Spectrum),
-[rpi5cpc](https://github.com/rlucencic/rpi5cpc) (Amstrad CPC),
-[rpi5cbm](https://github.com/rlucencic/rpi5cbm) (Commodore 64 and 128),
-[rpi5coco](https://github.com/rlucencic/rpi5coco) (Tandy Color Computer 2 and 3),
-[rpi5gs](https://github.com/rlucencic/rpi5gs) (Apple IIGS),
-[rpi5msx](https://github.com/rlucencic/rpi5msx) (MSX1 and MSX2),
-[rpi5xl](https://github.com/rlucencic/rpi5xl) (Atari 800XL and 130XE),
-[rpi5pc](https://github.com/rlucencic/rpi5pc) (IBM PC/XT and PC/AT),
-[rpi5mac](https://github.com/rlucencic/rpi5mac) (Macintosh Plus, SE, Classic),
-[rpi5mac2](https://github.com/rlucencic/rpi5mac2) (Macintosh LC and II),
-[rpi5mac3](https://github.com/rlucencic/rpi5mac3) (Macintosh LC II and LC III),
-[rpi5arc](https://github.com/rlucencic/rpi5arc) (Acorn Archimedes),
-[rpi5ami](https://github.com/rlucencic/rpi5ami) (Amiga 500, 2000, 600, 1200).
+It belongs to the SDL desktop family of the ESP32 emulators:
+[sdlzx](https://github.com/rlucencic/sdlzx) (ZX Spectrum),
+[sdlcpc](https://github.com/rlucencic/sdlcpc) (Amstrad CPC),
+[sdlcbm](https://github.com/rlucencic/sdlcbm) (Commodore 64 and 128),
+[sdlcoco](https://github.com/rlucencic/sdlcoco) (Tandy Color Computer 2 and 3),
+[sdlgs](https://github.com/rlucencic/sdlgs) (Apple IIGS),
+[sdlmsx](https://github.com/rlucencic/sdlmsx) (MSX1 and MSX2),
+[sdlxl](https://github.com/rlucencic/sdlxl) (Atari 800XL and 130XE),
+[sdlpc](https://github.com/rlucencic/sdlpc) (IBM PC/XT and PC/AT),
+[sdlmac](https://github.com/rlucencic/sdlmac) (Macintosh Plus, SE, Classic),
+[sdlmac2](https://github.com/rlucencic/sdlmac2) (Macintosh LC and II),
+[sdlmac3](https://github.com/rlucencic/sdlmac3) (Macintosh LC II and LC III),
+[sdlarc](https://github.com/rlucencic/sdlarc) (Acorn Archimedes),
+[sdlami](https://github.com/rlucencic/sdlami) (Amiga 500, 2000, 600, 1200).
 
 ## Features
 
@@ -91,11 +91,8 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 ### 1. What you need
 
-- A Raspberry Pi 5 with 64-bit Linux (developed on Ubuntu 26.04; any Linux with SDL 3.2 or
-  later should do)
-- The tools and libraries:
-  `sudo apt install build-essential cmake ninja-build pkg-config libsdl3-dev libsdl3-ttf-dev libpng-dev`
-- [esp32emu](https://github.com/rlucencic/esp32emu), [rpi5emu](https://github.com/rlucencic/rpi5emu)
+- 64-bit Linux (including Raspberry Pi 5) or Apple Silicon macOS with SDL 3.2 or newer. See [desktop build dependencies](https://github.com/rlucencic/sdlemu#building).
+- [esp32emu](https://github.com/rlucencic/esp32emu), [sdlemu](https://github.com/rlucencic/sdlemu)
   and [esp32ste](https://github.com/rlucencic/esp32ste), cloned next to this project
 - The ROMs (below)
 
@@ -103,22 +100,22 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 ```sh
 git clone https://github.com/rlucencic/esp32emu.git
-git clone https://github.com/rlucencic/rpi5emu.git
+git clone https://github.com/rlucencic/sdlemu.git
 git clone https://github.com/rlucencic/esp32ste.git
-git clone https://github.com/rlucencic/rpi5ste.git && cd rpi5ste
+git clone https://github.com/rlucencic/sdlste.git && cd sdlste
 cmake -S . -B build -G Ninja && cmake --build build
 ```
 
 ### 3. ROMs
 
 `tos162.img` and/or `tos206.img` in the data folder's `st/roms/`
-(`~/rpi5emu/st/roms`), named as esp32ste's. Not part of this repository.
+(`~/sdlemu/st/roms`), named as esp32ste's. Not part of this repository.
 
 ### 4. First start
 
-1. `build/rpi5ste`: the setup screen opens in a window.
+1. `build/sdlste`: the setup screen opens in a window.
 2. Choose the TOS and click **Start**.
-3. Put images into `~/rpi5emu/st/` (floppies `.ST`, `.MSA`; hard disks `.IMG`, `.HD`),
+3. Put images into `~/sdlemu/st/` (floppies `.ST`, `.MSA`; hard disks `.IMG`, `.HD`),
    drop them on the window or the web page, and insert them on the setup screen's **Disks** page.
 
 ## Using it
@@ -129,16 +126,16 @@ cmake -S . -B build -G Ninja && cmake --build build
 | Full screen | Ctrl+Alt+F |
 | Give the mouse to the machine, take it back | A click in the window; Ctrl+Alt+G |
 | Run as fast as it goes (warp) | Ctrl+Alt+W, again for real speed |
-| Take a screenshot | Ctrl+Alt+S (into `~/rpi5emu/screenshots`), or the console's `s` |
-| Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/rpi5ste game.st` |
-| Start straight into the machine | `build/rpi5ste -S`, with the setup screen's rows as `--choice`: `build/rpi5ste -S --choice "System=TOS 2.06" --choice "Memory=4 MB"` |
+| Take a screenshot | Ctrl+Alt+S (into `~/sdlemu/screenshots`), or the console's `s` |
+| Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/sdlste game.st` |
+| Start straight into the machine | `build/sdlste -S`, with the setup screen's rows as `--choice`: `build/sdlste -S --choice "System=TOS 2.06" --choice "Memory=4 MB"` |
 | Show the window on another computer | Log in with `ssh -C -Y <the Pi>` and start it there: fine for still pictures; games want the Pi's own monitor |
 | Make a blank floppy | Setup screen → **Disks** → **New empty disk** |
-| Use a hard disk image | Insert it into **ACSI 0** on the **Disks** page and reset: with a driver on it (AHDI, HDDRIVER, ICD, PPDriver) TOS boots from it, its partitions are C: onward and `~/rpi5emu` the next letter |
-| Use programs from the Pi | Copy them anywhere into `~/rpi5emu`: it's drive C: |
+| Use a hard disk image | Insert it into **ACSI 0** on the **Disks** page and reset: with a driver on it (AHDI, HDDRIVER, ICD, PPDriver) TOS boots from it, its partitions are C: onward and `~/sdlemu` the next letter |
+| Use programs from the Pi | Copy them anywhere into `~/sdlemu`: it's drive C: |
 
-Images live in `~/rpi5emu/st/`, settings in `~/.config/rpi5emu/settings.ini`; the
-inserted images are remembered across starts. `build/rpi5ste --help` lists the options.
+Images live in `~/sdlemu/st/`, settings in `~/.config/sdlemu/settings.ini`; the
+inserted images are remembered across starts. `build/sdlste --help` lists the options.
 
 ## How it works
 
@@ -157,7 +154,7 @@ flowchart LR
   EMU -- picture --> WIN
   EMU -- sound --> SND[SDL audio]
   WIN -- keys · mouse --> EMU
-  DATA[("~/rpi5emu<br>st · st/roms")]
+  DATA[("~/sdlemu<br>st · st/roms")]
   EMU <--> DATA
   WEB <--> DATA
 ```
@@ -166,17 +163,17 @@ flowchart LR
   platform independent: the same code runs on the ESP32 boards.
 - **`src/`**: the glue, esp32ste's `main/main.c` ported: memory, ROMs, settings, keyboard map,
   drives and status.
-- **[rpi5emu](https://github.com/rlucencic/rpi5emu)**: the window, the setup screen, sound,
+- **[sdlemu](https://github.com/rlucencic/sdlemu)**: the window, the setup screen, sound,
   input, the web page, the console, the data folder and the settings.
 - **[esp32emu](https://github.com/rlucencic/esp32emu)**: the CPU core (Musashi 68000).
 
 ## Development
 
 ```sh
-../rpi5emu/tools/pi.sh rpi5ste build        # from another computer: sync to the Pi, build there
-../rpi5emu/tools/pi.sh rpi5ste run          # its window on this computer (ssh -C -Y)
-../rpi5emu/tools/pi.sh rpi5ste headless     # no window: drive it through the console
-../rpi5emu/tools/console.sh i 's /tmp/shot.png'
+../sdlemu/tools/pi.sh sdlste build        # from another computer: sync to the Pi, build there
+../sdlemu/tools/pi.sh sdlste run          # its window on this computer (ssh -C -Y)
+../sdlemu/tools/pi.sh sdlste headless     # no window: drive it through the console
+../sdlemu/tools/console.sh i 's /tmp/shot.png'
 ```
 
 `CLAUDE.md` has the details: the layout, how it was ported, the checks; esp32ste's own
@@ -185,7 +182,7 @@ flowchart LR
 ## Limitations
 
 - Checked on the Pi through its console and screenshots: TOS 1.62 and 2.06 at full speed to the desktop; C: opened with a double click. By hand in the
-  window (forwarded to a Mac): TOS 2.06 and the mouse. ACSI: HDDRIVER's demo image booted (headless), its C: opened, `~/rpi5emu` D:. Not yet with the sound
+  window (forwarded to a Mac): TOS 2.06 and the mouse. ACSI: HDDRIVER's demo image booted (headless), its C: opened, `~/sdlemu` D:. Not yet with the sound
   heard, or with much software.
 - Over X forwarding (`ssh -Y`) every changed picture crosses the network: 8 to 15 a second, about 7 to a Mac
   (XQuartz, drawn in software).

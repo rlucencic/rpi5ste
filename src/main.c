@@ -1,8 +1,8 @@
 /*
- * Atari STE emulator on the Raspberry Pi 5.
+ * Atari STE emulator with SDL 3.
  *
  * The Pi's side (window, sound, keyboard, setup screen, web page, console,
- * settings, the data folder) is the shared runtime in ../rpi5emu, the
+ * settings, the data folder) is the shared runtime in ../sdlemu, the
  * machine esp32ste's; this file plugs the STE into it, as esp32ste's
  * main/main.c does on the boards (and mostly is that file): memory,
  * TOS, settings, keyboard map, disks and status.
